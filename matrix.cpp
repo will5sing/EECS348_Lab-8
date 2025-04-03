@@ -62,3 +62,25 @@ Matrix Matrix::operator*(const Matrix& other) const{
             result[i][j] = data[i][j] * other.data[i][j];
     return Matrix(result);
 }
+int Matrix::sum_diagonal_major()const{
+    int sum = 0;
+    for(size_t i=0; i<N; ++i)
+        sum += data[i][j];
+    return sum;
+}
+int Matrix::sum_diagonal_minor()const{
+    int sum = 0;
+    for (size_t i=0; i<N; ++i)
+        sum += data[i][N-i-1];
+}
+void Matrix::swap_rows(size_t row1, size_t row2){
+    if (row1 < N && row2 < N) {
+        swap(data[row1], data[row2]);
+    }
+}
+void Matrix::swap_cols(size_t col1, size_t col2){
+    if (col1 < N && col2 < N){
+        for (size_t i=0; i < N; ++i)
+            swap(data[i][col1], data[i][col2]);
+    }
+}
